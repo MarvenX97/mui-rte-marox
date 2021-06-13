@@ -55,8 +55,9 @@ const UrlPopover: FunctionComponent<IUrlPopoverStateProps> = (props) => {
 
     const { classes } = props
 	const [isPopOpen,setPopOpen] = useState(props.anchor !== undefined);
-	
-	const handleClose=()=>{
+    console.log("props anchor",props.anchor);
+	// @ts-ignore
+    const handleClose=()=>{
 		setPopOpen(false);
 	}
 	
