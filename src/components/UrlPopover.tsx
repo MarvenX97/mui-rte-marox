@@ -14,6 +14,7 @@ import FormatAlignCenter from '@material-ui/icons/FormatAlignCenter'
 import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft'
 import FormatAlignRight from '@material-ui/icons/FormatAlignRight'
 import CloseIcon from '@material-ui/icons/Close';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 
 export type TAlignment = "left" | "center" | "right"
 
@@ -45,6 +46,7 @@ const styles = ({ spacing }: Theme) => createStyles({
 })
 
 const UrlPopover: FunctionComponent<IUrlPopoverStateProps> = (props) => {
+    const [isLibOpen,setOpenLib]=useState(false);
     const [data, setData] = useState<TUrlData>(props.data || {
         url: undefined,
         width: undefined,
@@ -54,13 +56,7 @@ const UrlPopover: FunctionComponent<IUrlPopoverStateProps> = (props) => {
     })
 
     const { classes } = props
-	const [isPopOpen,setPopOpen] = useState(props.anchor !== undefined);
-    console.log("props anchor",props.anchor);
-	// @ts-ignore
-    const handleClose=()=>{
-		setPopOpen(false);
-	}
-	
+
     const onSizeChange = (value: any, prop: "width" | "height") => {
         if (value === "") {
             setData({ ...data, [prop]: undefined })
@@ -75,7 +71,7 @@ const UrlPopover: FunctionComponent<IUrlPopoverStateProps> = (props) => {
 
     return (
         <Popover
-            open={isPopOpen}
+            open={props.anchor !== undefined}
             anchorEl={props.anchor}
             anchorOrigin={{
                 vertical: "bottom",
@@ -119,12 +115,21 @@ const UrlPopover: FunctionComponent<IUrlPopoverStateProps> = (props) => {
                                         >
                                             <MovieIcon />
                                         </Button>
-                                        <Button 
-                                            color={data.type === "youtube" ? "primary" : "default"} 
-                                            size="small" 
+                                        <Button
+                                            color={data.type === "youtube" ? "primary" : "default"}
+                                            size="small"
                                             onClick={() => setData({...data, type: "youtube"})}
                                         >
                                             <YouTubeIcon />
+                                        </Button>
+                                        <Button
+                                            color={isLibOpen? "primary" : "default"}
+                                            size="small"
+                                            onClick={() => {
+                                                setOpenLib(!isLibOpen);
+                                            }}
+                                        >
+                                            <LibraryBooksIcon />
                                         </Button>
                                     </ButtonGroup>
                                 </Grid>
@@ -177,7 +182,7 @@ const UrlPopover: FunctionComponent<IUrlPopoverStateProps> = (props) => {
                     </Grid>
                     <Grid container item xs={12} direction="row" justify="flex-end">
 					   <Button
-                            onClick={() => props.onConfirm(props.isMedia, data.url, data.width, data.height, data.alignment, data.type)}
+                            onClick={() => props.onConfirm(props.isMedia, "")}
                         >
                             <CloseIcon />
                         </Button>
