@@ -3,7 +3,6 @@ import classNames from 'classnames'
 import { ContentState, ContentBlock } from 'draft-js'
 import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles'
 import CreateIcon from '@material-ui/icons/Create';
-import DeleteIcon from '@material-ui/icons/Delete';
 
 interface IMediaProps extends WithStyles<typeof styles> {
     block: ContentBlock
@@ -69,7 +68,7 @@ const Media: FunctionComponent<IMediaProps> = (props) => {
             const youtubeDefaultwidth = componentProps.width ? componentProps.width : 560;
             const youtubeDefaultheight = componentProps.height ? componentProps.height : 315;
             const srcLink = componentProps.src.split('/')[3].split('v=')[1];
-			console.log("Youtube Props update???",componentProps);
+			console.log("Youtube Props update??? v2",componentProps);
 			return <div className="relative border p-4 my-4 border-light-blue-800 ">
              <iframe width={youtubeDefaultwidth} height={youtubeDefaultheight} src={`https://www.youtube.com/embed/${srcLink}`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             {!readOnly ?
