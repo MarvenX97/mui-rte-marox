@@ -195,7 +195,9 @@ const Toolbar: FunctionComponent<TToolbarProps> = (props) => {
     const { editorState } = props
     const { editorRef } = props
     const [isSticky, setSticky] = useState(false);
-    const handleScroll = () => {
+    const handleScroll = (e: any) => {
+        console.log("Toolbar class handleScroll",e)
+        console.log("Toolbar class handleScroll editorRef.current",editorRef.current)
         if (editorRef.current) {
             setSticky(editorRef.current.getBoundingClientRect().top <= 0);
         }
