@@ -1052,6 +1052,7 @@ const MUIRichTextEditor: RefForwardingComponent<TMUIRichTextEditorRef, IMUIRichT
         }
     }
 
+   // const [isSticky, setSticky] = useState(false);
     return (
         <div id={`${editorId}-root`} className={classes.root}>
             <div id={`${editorId}-container`} className={classNames(classes.container, {
@@ -1079,7 +1080,6 @@ const MUIRichTextEditor: RefForwardingComponent<TMUIRichTextEditorRef, IMUIRichT
                             customControls={customControls}
                             inlineMode={true}
                             isActive={true}
-                            editorRef={editorRef}
                         />
                     </Paper>
                     : null}
@@ -1101,7 +1101,9 @@ const MUIRichTextEditor: RefForwardingComponent<TMUIRichTextEditorRef, IMUIRichT
                     <div id={`${editorId}-editor-container`} className={classNames(className, classes.editorContainer, {
                         [classes.editorReadOnly]: !editable,
                         [classes.error]: props.error
-                    })} onMouseDown={handleMouseDown} onBlur={handleBlur}>
+                    })} onMouseDown={handleMouseDown} onBlur={handleBlur}  onScroll={(e)=>{
+                        console.log("hii scrolled me? (editor)",e)
+                    }}>
                         <Editor
                             blockRenderMap={getBlockMap()}
                             blockRendererFn={blockRenderer}

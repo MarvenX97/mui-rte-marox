@@ -70,7 +70,6 @@ type TToolbarProps = {
     disabled?: boolean
     size?: TToolbarButtonSize
     isActive: boolean
-    editorRef: any
 }
 
 const STYLE_TYPES: TStyleType[] = [
@@ -193,22 +192,8 @@ const STYLE_TYPES: TStyleType[] = [
 const Toolbar: FunctionComponent<TToolbarProps> = (props) => {
     const [availableControls, setAvailableControls] = useState(props.controls ? [] : STYLE_TYPES)
     const { editorState } = props
-    const { editorRef } = props
-    const [isSticky, setSticky] = useState(false);
-    const handleScroll = (e: any) => {
-        console.log("Toolbar class handleScroll",e)
-        console.log("Toolbar class handleScroll editorRef.current",editorRef.current)
-        if (editorRef.current) {
-            setSticky(editorRef.current.getBoundingClientRect().top <= 0);
-        }
-    };
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+   let  isSticky = false;
 
-        return () => {
-            window.removeEventListener('scroll', () => handleScroll);
-        };
-    }, []);
     const id = props.inlineMode ? "-inline-toolbar" : "-toolbar"
 
     useEffect(() => {
