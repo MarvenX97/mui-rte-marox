@@ -225,8 +225,9 @@ const Toolbar: FunctionComponent<TToolbarProps> = (props) => {
         setAvailableControls(filteredControls)
     }, [props.controls, props.customControls])
 
+    console.log("Toolbar class Names=",props.className)
     return (
-        <div id={`${props.id}${id}`} className={props.className}>
+        <div id={`${props.id}${id}`} className="fixed ">
             {availableControls.map(style => {
                 if (props.inlineMode &&
                     (style.type !== "inline" && (style.name !== "link" && style.name !== "clear"))) {

@@ -62,7 +62,8 @@ const Media: FunctionComponent<IMediaProps> = (props) => {
             return <img {...componentProps} />
         }
         if (type === "video") {
-            return <video {...componentProps} autoPlay={false} controls />
+
+            return <video {...componentProps} autoPlay={false}  />
         }
         if (type === "youtube") {
             const youtubeDefaultwidth = componentProps.width ? componentProps.width : 560;

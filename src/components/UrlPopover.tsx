@@ -101,16 +101,16 @@ const UrlPopover: FunctionComponent<IUrlPopoverStateProps> = (props) => {
                             <>
                                 <Grid item xs={12}>
                                     <ButtonGroup fullWidth>
-                                        <Button 
-                                            color={(!data.type || data.type === "image") ? "primary" : "default"} 
-                                            size="small" 
+                                        <Button
+                                            color={(!data.type || data.type === "image") ? "primary" : "default"}
+                                            size="small"
                                             onClick={() => setData({...data, type: "image"})}
                                         >
                                             <InsertPhotoIcon />
                                         </Button>
-                                        <Button 
-                                            color={data.type === "video" ? "primary" : "default"} 
-                                            size="small" 
+                                        <Button
+                                            color={data.type === "video" ? "primary" : "default"}
+                                            size="small"
                                             onClick={() => setData({...data, type: "video"})}
                                         >
                                             <MovieIcon />
@@ -155,23 +155,23 @@ const UrlPopover: FunctionComponent<IUrlPopoverStateProps> = (props) => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <ButtonGroup fullWidth>
-                                        <Button 
-                                            color={data.alignment === "left" ? "primary" : "default"} 
-                                            size="small" 
+                                        <Button
+                                            color={data.alignment === "left" ? "primary" : "default"}
+                                            size="small"
                                             onClick={() => setData({...data, alignment: "left"})}
                                         >
                                             <FormatAlignLeft />
                                         </Button>
-                                        <Button 
-                                            color={data.alignment === "center" ? "primary" : "default"} 
-                                            size="small" 
+                                        <Button
+                                            color={data.alignment === "center" ? "primary" : "default"}
+                                            size="small"
                                             onClick={() => setData({...data, alignment: "center"})}
                                         >
                                             <FormatAlignCenter />
                                         </Button>
-                                        <Button 
-                                            color={data.alignment === "right" ? "primary" : "default"} 
-                                            size="small" 
+                                        <Button
+                                            color={data.alignment === "right" ? "primary" : "default"}
+                                            size="small"
                                             onClick={() => setData({...data, alignment: "right"})}>
                                             <FormatAlignRight />
                                         </Button>
@@ -181,19 +181,19 @@ const UrlPopover: FunctionComponent<IUrlPopoverStateProps> = (props) => {
                             : null}
                     </Grid>
                     <Grid container item xs={12} direction="row" justify="flex-end">
-					   <Button
+                        <Button
                             onClick={() => props.onConfirm(props.isMedia, "")}
                         >
                             <CloseIcon />
                         </Button>
                         {props.data && props.data.url ?
-                        <Button
-                            onClick={() => props.onConfirm(props.isMedia, "")}
-                        >
-                            <DeleteIcon />
-                        </Button>
-                        : null }
-                      
+                            <Button
+                                onClick={() => props.onConfirm(props.isMedia, "")}
+                            >
+                                <DeleteIcon />
+                            </Button>
+                            : null }
+
                         <Button
                             onClick={() => props.onConfirm(props.isMedia, data.url, data.width, data.height, data.alignment, data.type)}
                         >
