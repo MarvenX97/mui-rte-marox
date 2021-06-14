@@ -510,6 +510,7 @@ const MUIRichTextEditor: RefForwardingComponent<TMUIRichTextEditorRef, IMUIRichT
     }
 
     const handleBlur = () => {
+        console.log("handle blur ? allah a3lm")
         isFocusedWithMouse.current = false
         setFocus(false)
         if (props.onBlur) {
