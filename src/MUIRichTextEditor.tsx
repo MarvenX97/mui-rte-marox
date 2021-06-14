@@ -20,6 +20,7 @@ import CodeBlock from './components/CodeBlock'
 import UrlPopover, { TAlignment, TUrlData, TMediaType } from './components/UrlPopover'
 import Autocomplete, { TAutocompleteItem } from './components/Autocomplete'
 import { getSelectionInfo, removeBlockFromMap, atomicBlockExists, isGreaterThan, clearInlineStyles, getEditorBounds, getLineNumber, TPosition } from './utils'
+import ReactDOM from 'react-dom'
 
 export type TDecorator = {
     component: FunctionComponent
@@ -560,10 +561,10 @@ const MUIRichTextEditor: RefForwardingComponent<TMUIRichTextEditorRef, IMUIRichT
     }
     useEffect(() => {
 
-        window.addEventListener('scroll', handleScroll);
+        ReactDOM.findDOMNode(editorRef).addEventListener('scroll', handleScroll);
 
         return () => {
-            window.removeEventListener('scroll', () => handleScroll);
+            ReactDOM.findDOMNode(editorRef).removeEventListener('scroll', () => handleScroll);
         };
     }, []);
     const handleInsertAtomicBlockAsync = (name: string, promise: Promise<TAsyncAtomicBlockResponse>, placeholder?: string) => {
