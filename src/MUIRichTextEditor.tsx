@@ -562,17 +562,15 @@ const MUIRichTextEditor: RefForwardingComponent<TMUIRichTextEditorRef, IMUIRichT
     }
     useEffect(() => {
 
-       try {
-           console.log("edt1", ReactDOM.findDOMNode(editorRef.current));
-           console.log("edt2", ReactDOM.findDOMNode(editorRef));
-       }catch (e) {
-           console.log("error",e)
-       }
-
-        ReactDOM.findDOMNode(editorRef.current).addEventListener('scroll', handleScroll);
+       let input = ReactDOM.findDOMNode(editorRef.current);
+        console.log("input efc1)",input)
+        input.addEventListener('scroll', handleScroll);
 
         return () => {
-            ReactDOM.findDOMNode(editorRef.current).removeEventListener('scroll', () => handleScroll);
+
+            let input = ReactDOM.findDOMNode(editorRef.current);
+            console.log("input efc2)",input)
+            input.removeEventListener('scroll', () => handleScroll);
         };
     }, []);
     const handleInsertAtomicBlockAsync = (name: string, promise: Promise<TAsyncAtomicBlockResponse>, placeholder?: string) => {
