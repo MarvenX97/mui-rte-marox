@@ -192,7 +192,8 @@ const STYLE_TYPES: TStyleType[] = [
 const Toolbar: FunctionComponent<TToolbarProps> = (props) => {
     const [availableControls, setAvailableControls] = useState(props.controls ? [] : STYLE_TYPES)
     const { editorState } = props
-   let  isSticky = false;
+
+         //   setSticky(editorRef.current.getBoundingClientRect().top <= 0);
 
     const id = props.inlineMode ? "-inline-toolbar" : "-toolbar"
 
@@ -226,7 +227,7 @@ const Toolbar: FunctionComponent<TToolbarProps> = (props) => {
         })
         setAvailableControls(filteredControls)
     }, [props.controls, props.customControls])
-
+    let isSticky = true;
     console.log("Toolbar class Names=",props.className)
     console.log("Toolbar class is STicky=",isSticky)
     return (

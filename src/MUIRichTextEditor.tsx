@@ -555,7 +555,17 @@ const MUIRichTextEditor: RefForwardingComponent<TMUIRichTextEditorRef, IMUIRichT
         })
         updateStateForPopover(newEditorState)
     }
+    const handleScroll = (e)=>{
+        console.log("hii scrolled me? (editorb)",e,editorRef)
+    }
+    useEffect(() => {
 
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', () => handleScroll);
+        };
+    }, []);
     const handleInsertAtomicBlockAsync = (name: string, promise: Promise<TAsyncAtomicBlockResponse>, placeholder?: string) => {
         const selection = insertAsyncAtomicBlockPlaceholder(name, placeholder)
         const offset = selection.getFocusOffset() + 1
@@ -1102,9 +1112,7 @@ const MUIRichTextEditor: RefForwardingComponent<TMUIRichTextEditorRef, IMUIRichT
                     <div id={`${editorId}-editor-container`} className={classNames(className, classes.editorContainer, {
                         [classes.editorReadOnly]: !editable,
                         [classes.error]: props.error
-                    })} onMouseDown={handleMouseDown} onBlur={handleBlur}  onScroll={(e)=>{
-                        console.log("hii scrolled me? (editor)",e)
-                    }}>
+                    })} onMouseDown={handleMouseDown} onBlur={handleBlur}   >
                         <Editor
                             blockRenderMap={getBlockMap()}
                             blockRendererFn={blockRenderer}
