@@ -70,6 +70,7 @@ type TToolbarProps = {
     disabled?: boolean
     size?: TToolbarButtonSize
     isActive: boolean
+    editorRef: any
 }
 
 const STYLE_TYPES: TStyleType[] = [
@@ -192,6 +193,20 @@ const STYLE_TYPES: TStyleType[] = [
 const Toolbar: FunctionComponent<TToolbarProps> = (props) => {
     const [availableControls, setAvailableControls] = useState(props.controls ? [] : STYLE_TYPES)
     const { editorState } = props
+    const { editorRef } = props
+    const [isSticky, setSticky] = useState(false);
+    const handleScroll = () => {
+        if (editorRef.current) {
+            setSticky(editorRef.current.getBoundingClientRect().top <= 0);
+        }
+    };
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', () => handleScroll);
+        };
+    }, []);
     const id = props.inlineMode ? "-inline-toolbar" : "-toolbar"
 
     useEffect(() => {
@@ -226,8 +241,9 @@ const Toolbar: FunctionComponent<TToolbarProps> = (props) => {
     }, [props.controls, props.customControls])
 
     console.log("Toolbar class Names=",props.className)
+    console.log("Toolbar class is STicky=",isSticky)
     return (
-        <div id={`${props.id}${id}`} className="fixed ">
+        <div id={`${props.id}${id}`} className={props.className} style={{ position: isSticky ? "sticky" : "relative"}}>
             {availableControls.map(style => {
                 if (props.inlineMode &&
                     (style.type !== "inline" && (style.name !== "link" && style.name !== "clear"))) {

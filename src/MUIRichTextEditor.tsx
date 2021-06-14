@@ -1079,6 +1079,7 @@ const MUIRichTextEditor: RefForwardingComponent<TMUIRichTextEditorRef, IMUIRichT
                             customControls={customControls}
                             inlineMode={true}
                             isActive={true}
+                            editorRef={editorRef}
                         />
                     </Paper>
                     : null}
