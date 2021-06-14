@@ -557,22 +557,7 @@ const MUIRichTextEditor: RefForwardingComponent<TMUIRichTextEditorRef, IMUIRichT
         })
         updateStateForPopover(newEditorState)
     }
-    const handleScroll = (e)=>{
-        console.log("hii scrolled me? (editorb)",e,editorRef)
-    }
-    useEffect(() => {
 
-       let input = ReactDOM.findDOMNode(editorRef.current);
-        console.log("input efc1)",input)
-        input.addEventListener('scroll', handleScroll);
-
-        return () => {
-
-            let input = ReactDOM.findDOMNode(editorRef.current);
-            console.log("input efc2)",input)
-            input.removeEventListener('scroll', () => handleScroll);
-        };
-    }, []);
     const handleInsertAtomicBlockAsync = (name: string, promise: Promise<TAsyncAtomicBlockResponse>, placeholder?: string) => {
         const selection = insertAsyncAtomicBlockPlaceholder(name, placeholder)
         const offset = selection.getFocusOffset() + 1

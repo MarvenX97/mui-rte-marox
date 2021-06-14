@@ -228,10 +228,8 @@ const Toolbar: FunctionComponent<TToolbarProps> = (props) => {
         setAvailableControls(filteredControls)
     }, [props.controls, props.customControls])
     let isSticky = true;
-    console.log("Toolbar class Names=",props.className)
-    console.log("Toolbar class is STicky=",isSticky)
     return (
-        <div id={`${props.id}${id}`} className={props.className} style={{ position: isSticky ? "sticky" : "relative"}}>
+        <div id={`${props.id}${id}`} className={props.className} style={{ position: isSticky ? "fixed" : "relative"}}>
             {availableControls.map(style => {
                 if (props.inlineMode &&
                     (style.type !== "inline" && (style.name !== "link" && style.name !== "clear"))) {
